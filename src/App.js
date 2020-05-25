@@ -1,26 +1,50 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { FormGroup, FormControl, InputGroup, Button } from 'react-bootstrap';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      query: '',
+    };
+  }
+
+  search() {
+    console.log('this.state', this.state);
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">Music Master</header>
+        <div>
+          <FormGroup>
+            <InputGroup>
+              <FormControl
+                value={this.state.query}
+                onChange={(event) => {
+                  this.setState({ query: event.target.value });
+                }}
+                onKeyPress={(event) => {
+                  if (event.key === 'Enter') {
+                    this.search();
+                  }
+                }}
+                type="text"
+                placeholder="Search for an artist"
+              />
+              <Button onClick={() => this.search()}>Search</Button>
+            </InputGroup>
+          </FormGroup>
+          <div className="gallery">Gallery</div>
+          <div className="profile">
+            <div>Name</div>
+            <div>Picture</div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
