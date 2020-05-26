@@ -1,6 +1,7 @@
 import React from 'react';
 import { FormGroup, FormControl, InputGroup, Button } from 'react-bootstrap';
 import request from 'request';
+import Profile from './Profile';
 
 class App extends React.Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class App extends React.Component {
     };
   }
 
-  async search() {
+  search() {
     const client_id = process.env.REACT_APP_CLIENT_ID;
     const client_secret = process.env.REACT_APP_CLIENT_SECRET;
 
@@ -33,8 +34,8 @@ class App extends React.Component {
     request.post(auth, async (error, response, body) => {
       if (!error && response.statusCode === 200) {
         // use the access token to access the Spotify Web API
-        var token = body.access_token;
-        var options = {
+        const token = body.access_token;
+        const options = {
           url: FETCH_URL,
           headers: {
             Authorization: 'Bearer ' + token,
@@ -72,11 +73,7 @@ class App extends React.Component {
               <Button onClick={() => this.search()}>Search</Button>
             </InputGroup>
           </FormGroup>
-          <div className="gallery">Gallery</div>
-          <div className="profile">
-            <div>Name</div>
-            <div>Picture</div>
-          </div>
+          <Profile artist={this.state.artist} />
         </div>
       </div>
     );
