@@ -1,6 +1,6 @@
 # Music Master
 
-Search for artist information using the Spotify API
+Search for an artist and get top tracks using the Spotify API
 
 ### Set up API keys
 
@@ -18,3 +18,5 @@ https://developer.spotify.com/dashboard/applications
 npm install
 npm start
 ```
+
+![Screenshot](images/screenshot.png)
